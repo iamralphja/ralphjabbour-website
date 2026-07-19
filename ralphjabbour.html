@@ -1203,4 +1203,1173 @@
     </script>
 
 </body>
+</html>            --wide-w:           920px;
+        }
+
+        /* ================================================================
+           RESET
+           ================================================================ */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background: var(--bg);
+            color: var(--text-primary);
+            font-family: var(--font-body);
+            font-weight: 300;
+            font-size: 16px;
+            line-height: 1.75;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        a { color: inherit; text-decoration: none; }
+        img { max-width: 100%; display: block; }
+
+        /* ================================================================
+           NAVIGATION
+           ================================================================ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1.4rem 2.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(11, 11, 11, 0.0);
+            transition: background 0.3s ease;
+        }
+        nav.scrolled { background: rgba(11, 11, 11, 0.96); }
+
+        .nav-name {
+            font-family: var(--font-body);
+            font-weight: 500;
+            font-size: 0.8rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            opacity: 0.9;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.25rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.72rem;
+            font-weight: 400;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+
+        /* ================================================================
+           BUTTONS
+           ================================================================ */
+        .btn {
+            display: inline-block;
+            font-family: var(--font-body);
+            font-size: 0.72rem;
+            font-weight: 600;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            padding: 0.9rem 2.25rem;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: #0B0B0B;
+            border: 1px solid var(--accent);
+        }
+        .btn-primary:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-light);
+            transform: translateY(-1px);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-mid);
+            border: 1px solid var(--border-mid);
+        }
+        .btn-secondary:hover {
+            color: var(--text-primary);
+            border-color: var(--text-secondary);
+            transform: translateY(-1px);
+        }
+        .btn-ghost {
+            background: transparent;
+            color: var(--accent);
+            border: 1px solid var(--accent);
+            padding: 0.75rem 1.75rem;
+        }
+        .btn-ghost:hover {
+            background: var(--accent-dim);
+            transform: translateY(-1px);
+        }
+
+        /* ================================================================
+           SECTION SCAFFOLDING
+           ================================================================ */
+        section {
+            padding: 7rem 2.5rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .section-inner { max-width: var(--max-w); margin: 0 auto; }
+        .section-inner--content { max-width: var(--content-w); margin: 0 auto; }
+        .section-inner--wide { max-width: var(--wide-w); margin: 0 auto; }
+
+        .section-eyebrow {
+            display: block;
+            font-family: var(--font-body);
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Animated rule — signature element. Draws in amber on scroll. */
+        .burn-rule {
+            display: block;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            margin-bottom: 3rem;
+            transition: width 1s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .burn-rule.lit { width: 48px; }
+
+        /* ================================================================
+           HERO
+           ================================================================ */
+        #home {
+            border-top: none;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 9rem 2.5rem 5rem;
+            position: relative;
+        }
+
+        .hero-name {
+            font-family: var(--font-body);
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 3rem;
+            opacity: 0;
+            animation: fadeIn 1s 0.3s forwards;
+        }
+
+        .hero-headline {
+            font-family: var(--font-display);
+            font-weight: 300;
+            font-size: clamp(2rem, 5.5vw, 4rem);
+            line-height: 1.08;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            max-width: 820px;
+            margin: 0 auto 2.25rem;
+            opacity: 0;
+            animation: fadeUp 1s 0.5s forwards;
+        }
+
+        .hero-tagline {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: clamp(1rem, 2vw, 1.3rem);
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 3.5rem;
+            letter-spacing: 0.03em;
+            opacity: 0;
+            animation: fadeIn 1s 0.8s forwards;
+        }
+
+        .hero-ctas {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeIn 1s 1s forwards;
+        }
+
+        /* Vertical line below hero */
+        #home::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--accent), transparent);
+            opacity: 0.35;
+        }
+
+        /* ================================================================
+           ABOUT
+           ================================================================ */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 320px;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .about-headline {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            margin-bottom: 2.25rem;
+        }
+
+        .about-body p {
+            font-size: 1rem;
+            color: var(--text-mid);
+            line-height: 1.85;
+            margin-bottom: 1.5rem;
+        }
+        .about-body p:last-of-type { margin-bottom: 0; }
+        .about-body strong { color: var(--text-primary); font-weight: 400; }
+
+        .about-credentials {
+            margin-top: 2.75rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+        .about-credentials span {
+            font-size: 0.72rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .about-photo-wrap {
+            position: sticky;
+            top: 7rem;
+        }
+
+        /* ================================================================
+           PHOTO PLACEHOLDER
+           Replace this block with <img src="ralph.jpg" ...> when ready
+           ================================================================ */
+        .photo-slot {
+            width: 100%;
+            aspect-ratio: 3/4;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+        }
+        .photo-slot-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            text-align: center;
+            padding: 0 2rem;
+            line-height: 1.6;
+        }
+
+        /* ================================================================
+           WORK WITH ME
+           ================================================================ */
+        .work-header { max-width: var(--content-w); margin-bottom: 4rem; }
+
+        .work-header-headline {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.5rem;
+        }
+
+        .work-header-desc {
+            font-size: 1rem;
+            color: var(--text-mid);
+            line-height: 1.8;
+        }
+
+        .offers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+            margin-bottom: 2rem;
+        }
+
+        .offer {
+            background: var(--bg);
+            padding: 2.25rem 2.25rem 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: background 0.2s ease;
+        }
+        .offer:hover { background: var(--surface-hover); }
+
+        .offer-tag {
+            font-size: 0.62rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+
+        .offer-name {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: 1.6rem;
+            line-height: 1.15;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .offer-format {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            letter-spacing: 0.04em;
+            margin-bottom: 1.5rem;
+        }
+
+        .offer-desc {
+            font-size: 0.9rem;
+            color: var(--text-mid);
+            line-height: 1.75;
+            flex: 1;
+            margin-bottom: 2rem;
+        }
+
+        .offer-footer {
+            border-top: 1px solid var(--border);
+            padding-top: 1.25rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .offer-price {
+            font-family: var(--font-display);
+            font-size: 1.15rem;
+            font-weight: 400;
+            color: var(--text-primary);
+        }
+
+        .offer-cta {
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--accent);
+            border-bottom: 1px solid var(--accent);
+            padding-bottom: 0.1rem;
+            transition: opacity 0.2s;
+        }
+        .offer-cta:hover { opacity: 0.65; }
+
+        .work-disclaimer {
+            padding: 1.25rem 1.5rem;
+            background: var(--surface);
+            border: 1px solid var(--border);
+        }
+        .work-disclaimer p {
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ================================================================
+           SPEAKING
+           ================================================================ */
+        .speaking-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            align-items: start;
+        }
+
+        .speaking-headline {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            margin-bottom: 2rem;
+        }
+
+        .speaking-body p {
+            font-size: 1rem;
+            color: var(--text-mid);
+            line-height: 1.85;
+            margin-bottom: 1.5rem;
+        }
+        .speaking-body strong { color: var(--text-primary); font-weight: 400; }
+
+        .speaking-meta {
+            margin-top: 2.75rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .speaking-meta-row {
+            padding: 1.1rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .meta-label {
+            display: block;
+            font-size: 0.62rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 0.4rem;
+        }
+
+        .meta-value {
+            font-size: 0.875rem;
+            color: var(--text-mid);
+        }
+
+        .topics-head {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            margin-bottom: 1.75rem;
+        }
+
+        .topic-list { border-top: 1px solid var(--border); }
+
+        .topic {
+            padding: 1.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topic-title {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.01em;
+        }
+
+        .topic-desc {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* ================================================================
+           BOOK
+           ================================================================ */
+        .book-grid {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            gap: 5.5rem;
+            align-items: start;
+        }
+
+        .book-cover-wrap {
+            position: sticky;
+            top: 7rem;
+        }
+
+        /* ================================================================
+           BOOK COVER PLACEHOLDER
+           Replace with: <img src="book-cover.jpg" alt="The Rebellion of Life">
+           ================================================================ */
+        .cover-slot {
+            width: 100%;
+            aspect-ratio: 2/3;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .cover-slot p {
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .book-title {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: clamp(1.8rem, 3.5vw, 2.75rem);
+            line-height: 1.2;
+            letter-spacing: -0.01em;
+            margin-bottom: 0.25rem;
+        }
+
+        .book-subtitle-line {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.15rem;
+            color: var(--accent);
+            margin-bottom: 2.5rem;
+        }
+
+        .book-meta-row {
+            display: flex;
+            gap: 3rem;
+            padding: 1.25rem 0;
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 2.5rem;
+        }
+
+        .meta-cell span:first-child {
+            display: block;
+            font-size: 0.62rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 0.3rem;
+        }
+        .meta-cell span:last-child {
+            font-size: 0.85rem;
+            color: var(--text-primary);
+        }
+
+        .book-desc p {
+            font-family: var(--font-body);
+            font-size: 1rem;
+            color: var(--text-mid);
+            line-height: 1.85;
+            margin-bottom: 1.5rem;
+        }
+        .book-desc p:last-of-type { margin-bottom: 2.5rem; }
+
+        /* ================================================================
+           SUBSTACK SUBSCRIBE BLOCK
+           EDIT: Replace the href with your Substack URL when live
+           ================================================================ */
+        .subscribe-block {
+            border-top: 1px solid var(--border);
+            padding-top: 2.25rem;
+        }
+
+        .subscribe-label {
+            font-size: 0.65rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 0.75rem;
+        }
+
+        .subscribe-block h3 {
+            font-family: var(--font-display);
+            font-weight: 400;
+            font-size: 1.3rem;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+
+        .subscribe-block p {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ================================================================
+           FOOTER
+           ================================================================ */
+        footer {
+            border-top: 1px solid var(--border);
+            padding: 2.75rem 2.5rem;
+        }
+
+        .footer-inner {
+            max-width: var(--max-w);
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 2rem;
+        }
+
+        .footer-copy {
+            font-size: 0.72rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-disclaimer {
+            font-size: 0.65rem;
+            color: #3A3A3A;
+            max-width: 480px;
+            line-height: 1.65;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.75rem;
+            flex-shrink: 0;
+        }
+
+        .footer-links a {
+            font-size: 0.68rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            transition: color 0.2s;
+        }
+        .footer-links a:hover { color: var(--text-primary); }
+
+        /* ================================================================
+           FADE ANIMATIONS
+           ================================================================ */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.75s ease, transform 0.75s ease;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        /* ================================================================
+           RESPONSIVE
+           ================================================================ */
+        @media (max-width: 900px) {
+            .about-grid,
+            .speaking-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            .about-photo-wrap { position: static; }
+            .photo-slot { aspect-ratio: 1/1; max-width: 380px; }
+
+            .book-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+            .book-cover-wrap { position: static; max-width: 220px; }
+
+            .offers-grid { grid-template-columns: 1fr; }
+
+            .footer-inner { flex-direction: column; }
+            .footer-links { flex-wrap: wrap; gap: 1rem; }
+        }
+
+        @media (max-width: 640px) {
+            nav { padding: 1rem 1.5rem; }
+            .nav-links { display: none; }
+            section { padding: 5rem 1.5rem; }
+            .hero-ctas { flex-direction: column; align-items: center; }
+            .btn { width: 100%; max-width: 280px; text-align: center; }
+            footer { padding: 2.5rem 1.5rem; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .hero-name, .hero-headline, .hero-tagline, .hero-ctas { animation: none; opacity: 1; }
+            .fade-in { opacity: 1; transform: none; transition: none; }
+            .burn-rule { width: 48px; transition: none; }
+            .btn:hover { transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================================
+         NAVIGATION
+         EDIT: Section links and your name
+         ================================================================ -->
+    <nav id="main-nav">
+        <a href="#home" class="nav-name">Ralph Jabbour</a>
+        <ul class="nav-links">
+            <li><a href="#about">About</a></li>
+            <li><a href="#work">Work With Me</a></li>
+            <li><a href="#speaking">Speaking</a></li>
+            <li><a href="#book">Book</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- ================================================================
+         HERO
+         EDIT: Headline, tagline, and CTA button links below
+         ================================================================ -->
+    <section id="home">
+        <!-- EDIT: Eyebrow -->
+        <span class="hero-name">Ralph Jabbour</span>
+
+        <!-- EDIT: Main headline — these lines are the central claim -->
+        <h1 class="hero-headline">
+            The life that doesn't fit you<br>
+            didn't happen by accident, It was built one small surrender at a time.
+        </h1>
+
+        <!-- EDIT: Tagline -->
+        <p class="hero-tagline">Not a better life. A truer one.</p>
+
+        <div class="hero-ctas">
+            <!-- EDIT: Primary CTA — links to book on Amazon -->
+            <a href="https://www.amazon.com/s?k=The+Rebellion+of+Life+Burn+the+Lie+Ralph+Jabbour" target="_blank" rel="noopener" class="btn btn-primary">Read the Book</a>
+            <!-- EDIT: Secondary CTA — links to offer section -->
+            <a href="#work" class="btn btn-secondary">Work With Me</a>
+        </div>
+    </section>
+
+
+    <!-- ================================================================
+         ABOUT
+         EDIT: The paragraphs in .about-body — write in your own words,
+         or refine what's here. Credentials at the bottom too.
+         ================================================================ -->
+    <section id="about">
+        <div class="section-inner">
+            <span class="section-eyebrow fade-in">About</span>
+            <span class="burn-rule"></span>
+
+            <div class="about-grid">
+                <div class="about-text">
+                    <!-- EDIT: About headline -->
+                    <h2 class="about-headline fade-in">
+                        The paradox is the point.
+                    </h2>
+
+                    <div class="about-body">
+                        <!-- EDIT: Paragraph 1 -->
+                        <p class="fade-in">
+                            Ralph Jabbour is a Lebanese author and advisor based in Dubai.
+                            His work examines the beliefs, identities, and behavioral patterns people carry without knowing if they have chosen them, and what it costs to keep carrying them. Not as theory, but as a pattern he has spent years learning to read, first in organizations, then in people, eventually in himself.
+                        </p>
+
+                        <!-- EDIT: Paragraph 2 -->
+                        <p class="fade-in">
+                            He works with people at the point where something has to change, in how they think, how they lead, how they live, or simply in the story they've been telling themselves about who they are and what they're capable of. His work doesn't follow a formula. It follows the person. What he brings is the ability to see clearly what others are too close to see, and to say it in a way that lands without flinching.
+                            He is the author of The Rebellion of Life: Burn the Lie and the host of Letters from Rebellion.
+                        </p>
+
+                        <!-- EDIT: Paragraph 3 -->
+                        <p class="fade-in">
+                            <strong>What he offers is not a roadmap. It is a mirror, and the courage to look into it.<strong>
+                        </p>
+
+                        <!-- EDIT: Paragraph 4 — closing line -->
+                        <p class="fade-in">
+                            <strong>The Rebellion Project</strong> is the ongoing body of work that names this,
+                            exposes it, and refuses to make it comfortable.
+                        </p>
+                    </div>
+
+                    <!-- EDIT: Credential lines below -->
+                    <div class="about-credentials fade-in">
+                        <span>Author — The Rebellion of Life: Burn the Lie (2025)</span>
+                        <span>Host — Letters from Rebellion Podcast</span>
+                        <span>Business Analyst · Dubai, UAE</span>
+                    </div>
+                </div>
+
+                <!--
+                    ────────────────────────────────────────────────────
+                    PHOTO PLACEHOLDER
+                    When you have a photo:
+                    1. Save it as "ralph.jpg" in the same folder as this file
+                    2. Delete the <div class="photo-slot">...</div> block
+                    3. Uncomment the <img> line below it
+                    Recommended: 800×1067px minimum, JPG, face well-lit
+                    ────────────────────────────────────────────────────
+                -->
+                <div class="about-photo-wrap fade-in">
+                    <img src="ralph.jpg" alt="Ralph Jabbour" style="width:100%; display:block;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================
+         WORK WITH ME
+         EDIT: Offer names, descriptions, prices, and enquiry email below
+         ================================================================ -->
+    <section id="work">
+        <div class="section-inner">
+            <span class="section-eyebrow fade-in">Work With Me</span>
+            <span class="burn-rule"></span>
+
+            <div class="work-header fade-in">
+                <!-- EDIT: Section headline -->
+                <h2 class="work-header-headline">
+                    One-to-one sessions, group programs, and corporate workshops; for those ready to do the work.
+                </h2>
+                <!-- EDIT: Intro paragraph -->
+                <p class="work-header-desc">
+                    The work begins where comfort ends. Every engagement is built around one outcome: a decision made, owned, and impossible to walk back from.
+                </p>
+            </div>
+
+            <div class="offers-grid fade-in">
+
+                <!-- ── OFFER 1 ──────────────────────────────────────
+                     EDIT: Tag, name, format, description, price, and enquiry link
+                     ─────────────────────────────────────────────── -->
+                <div class="offer">
+                    <span class="offer-tag">Entry · One Session</span>
+                    <div class="offer-name">The Chase Audit</div>
+                    <div class="offer-format">90 minutes · Live, 1:1</div>
+                    <p class="offer-desc">
+                        A map of what you are actually chasing, where each target was installed,
+                        and what each one is currently costing you. Not coaching. A diagnostic.
+                        You leave knowing exactly what you've been running toward
+                        and whether you ever chose it.
+                    </p>
+                    <div class="offer-footer">
+                        <!-- EDIT: Price -->
+                        <span class="offer-price">$200 – $400</span>
+                        <!-- EDIT: Replace email subject or link to booking page when ready -->
+                        <a href="mailto:ralph@ralphjabbour.com?subject=Chase%20Audit%20Enquiry" class="offer-cta">Book a Session</a>
+                    </div>
+                </div>
+
+                <!-- ── OFFER 2 ────────────────────────────────────── -->
+                <div class="offer">
+                    <span class="offer-tag">Core · 90 Days</span>
+                    <div class="offer-name">The Authorship Sessions</div>
+                    <div class="offer-format">Six sessions · 90 days · 1:1</div>
+                    <p class="offer-desc">
+                        Built around the Six Stages of the Installed Life. One irreversible
+                        decision, the one you have been avoiding longest. Not general coaching.
+                        A surgical process that ends with a decision made, owned, and begun.
+                        Founding cohort pricing now.
+                    </p>
+                    <div class="offer-footer">
+                        <span class="offer-price">$2,500 – $3,500</span>
+                        <a href="mailto:ralph@ralphjabbour.com?subject=Authorship%20Sessions%20Enquiry" class="offer-cta">Enquire</a>
+                    </div>
+                </div>
+
+                <!-- ── OFFER 3 ────────────────────────────────────── -->
+                <div class="offer">
+                    <span class="offer-tag">Corporate · Workshop</span>
+                    <div class="offer-name">The Installed Culture Workshop</div>
+                    <div class="offer-format">Half-day or full-day · In-person or virtual</div>
+                    <p class="offer-desc">
+                        Organizational dysfunction is not a strategy problem.
+                        It is an installed culture problem; systems, behaviors, and identities
+                        that outlived the problems they were designed to solve.
+                        For leadership teams ready to name what no one will say in the room.
+                    </p>
+                    <div class="offer-footer">
+                        <span class="offer-price">$5,000 – $15,000</span>
+                        <a href="mailto:ralph@ralphjabbour.com?subject=Corporate%20Workshop%20Enquiry" class="offer-cta">Enquire</a>
+                    </div>
+                </div>
+
+                <!-- ── OFFER 4 ────────────────────────────────────── -->
+                <div class="offer">
+                    <span class="offer-tag">Premium · One Year</span>
+                    <div class="offer-name">Executive Advisory</div>
+                    <div class="offer-format">Four deep sessions · open access · 12 months</div>
+                    <p class="offer-desc">
+                        One relationship. One year. One question: what life are you
+                        actually building, and from which principles? For the people who
+                        have read everything, followed the work for a year, and are ready
+                        to do it with someone present who will not let them look away.
+                    </p>
+                    <div class="offer-footer">
+                        <span class="offer-price">$15,000 – $25,000</span>
+                        <a href="mailto:ralph@ralphjabbour.com?subject=Executive%20Advisory%20Enquiry" class="offer-cta">Enquire</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Disclaimer — required per brand brief -->
+            <div class="work-disclaimer fade-in">
+                <p>
+                    All services are philosophical, educational, and experiential in nature;
+                    not clinical, therapeutic, or mental health-related. Ralph Jabbour is an author,
+                    educator, and facilitator, not a licensed medical or mental health professional.
+                </p>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================
+         SPEAKING
+         EDIT: Headline, description paragraphs, keynote topics, and
+         the format / audience / availability metadata rows below
+         ================================================================ -->
+    <section id="speaking">
+        <div class="section-inner">
+            <span class="section-eyebrow fade-in">Speaking</span>
+            <span class="burn-rule"></span>
+
+            <div class="speaking-grid">
+                <div class="speaking-left">
+                    <!-- EDIT: Speaking headline -->
+                    <h2 class="speaking-headline fade-in">
+                        For organizations ready to hear what they've been avoiding.
+                    </h2>
+
+                    <div class="speaking-body">
+                        <!-- EDIT: Description paragraphs -->
+                        <p class="fade-in">
+                            The question Ralph puts to every audience is the same one the brand was
+                            built on: <strong>what are we actually chasing, and did anyone here choose it?</strong>
+                        </p>
+                        <p class="fade-in">
+                            Most keynotes on leadership and culture name the symptom.
+                            The Rebellion Project names the mechanism; the installed beliefs,
+                            borrowed targets, and inherited scripts that run both individuals
+                            and organizations until something finally breaks.
+                        </p>
+                        <p class="fade-in">
+                            Four industries. Fourteen years in Dubai. Systems analyst by training,
+                            philosopher by necessity. The room gets both, operational precision and
+                            an intellectual framework that most conference stages have not encountered
+                            at the front of the room.
+                        </p>
+                    </div>
+
+                    <!-- EDIT: Email address for booking enquiries -->
+                    <a href="mailto:ralph@ralphjabbour.com?subject=Speaking%20Enquiry" class="btn btn-ghost fade-in" style="margin-top:2rem; display:inline-block;">Speaking Enquiries</a>
+
+                    <div class="speaking-meta fade-in">
+                        <!-- EDIT: Format, duration, audience, location rows -->
+                        <div class="speaking-meta-row">
+                            <span class="meta-label">Format</span>
+                            <span class="meta-value">Keynote · Workshop · Panel · Corporate retreat</span>
+                        </div>
+                        <div class="speaking-meta-row">
+                            <span class="meta-label">Duration</span>
+                            <span class="meta-value">45-min keynote · 90-min keynote + Q&amp;A · Half-day workshop</span>
+                        </div>
+                        <div class="speaking-meta-row">
+                            <span class="meta-label">Audiences</span>
+                            <span class="meta-value">Leadership teams · Executive conferences · Entrepreneurship summits · Corporate off-sites</span>
+                        </div>
+                        <div class="speaking-meta-row">
+                            <span class="meta-label">Location</span>
+                            <span class="meta-value">Based in Dubai, UAE · Available internationally</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="speaking-right fade-in">
+                    <!-- EDIT: Keynote topics heading -->
+                    <h3 class="topics-head">Keynote Topics</h3>
+
+                    <div class="topic-list">
+                        <!-- EDIT: Topic 1 — title and description -->
+                        <div class="topic">
+                            <div class="topic-title">The Installed Life: Why We Chase What We Never Chose</div>
+                            <p class="topic-desc">
+                                The flagship talk. The happiness, stability, and status people are chasing
+                                were installed before they were old enough to question whether they wanted them.
+                                This talk names the mechanism and offers a harder claim than most rooms have heard.
+                            </p>
+                        </div>
+
+                        <!-- EDIT: Topic 2 -->
+                        <div class="topic">
+                            <div class="topic-title">Installed Culture: The System That Outlived Its Problem</div>
+                            <p class="topic-desc">
+                                For leadership teams. Organizational dysfunction is not a strategy gap,
+                                it is an identity problem. The beliefs, behaviors, and scripts that built
+                                the company are now running it into something no one designed and no one
+                                would choose if they thought about it.
+                            </p>
+                        </div>
+
+                        <!-- EDIT: Topic 3 -->
+                        <div class="topic">
+                            <div class="topic-title">Burn the Lie: Defiance as a Leadership Strategy</div>
+                            <p class="topic-desc">
+                                On the difference between the leaders who inherit a script and execute it,
+                                and the ones who name what the script is costing before it costs everything.
+                                A talk on intellectual courage in rooms that reward compliance.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================
+         BOOK
+         EDIT: Book description and Amazon link below.
+         To add book cover image: save as "book-cover.jpg" in same folder,
+         then delete the cover-slot block and uncomment the img tag.
+         ================================================================ -->
+    <section id="book">
+    <div class="section-inner">
+        <span class="section-eyebrow fade-in">The Book</span>
+        <span class="burn-rule"></span>
+
+        <div class="book-grid">
+            <div class="book-cover-wrap fade-in">
+                <img src="book-cover.jpg" alt="The Rebellion of Life: Burn the Lie">
+            </div>
+
+            <div class="book-content">
+                <h2 class="book-title fade-in">The Rebellion of Life</h2>
+                <p class="book-subtitle-line fade-in">Burn the Lie</p>
+
+                <div class="book-meta-row fade-in">
+                    <div class="meta-cell">
+                        <span>Published</span>
+                        <span>2025</span>
+                    </div>
+                    <div class="meta-cell">
+                        <span>Format</span>
+                        <span>Paperback · Digital</span>
+                    </div>
+                    <div class="meta-cell">
+                        <span>ISBN</span>
+                        <span>9798293242559</span>
+                    </div>
+                </div>
+
+                <div class="book-desc">
+                    <p class="fade-in">
+                        You already know something is wrong.
+                        Not with your circumstances. With the whole thing. The way you're living,
+                        what you're chasing, who you've become to keep it all running.
+                        You can feel it, even when you can't name it. This book names it.
+                    </p>
+                    <p class="fade-in">
+                        The fears you've been managing, the choices you've been avoiding,
+                        the version of yourself you've been performing, none of it was inevitable.
+                        It was built. One small surrender at a time. The Rebellion of Life is not
+                        a self-help book. It doesn't have a morning routine, a five-step framework,
+                        or a promise that everything will work out. What it has is the one thing
+                        most people spend their entire lives avoiding: the truth about the life
+                        they're actually living, who built it, and what it's costing them every day
+                        they keep pretending it fits. Seventeen chapters. No comfort. No shortcuts.
+                        Just the kind of clarity that changes how you see everything, including yourself.
+                    </p>
+                    <p class="fade-in">
+                        From truth to cowardice, indecision to creativity, collapse to what comes after —
+                        the book moves through the full arc of an installed life being recognized and,
+                        chapter by chapter, refused. It ends where it must: not with instructions,
+                        but with a question.
+                    </p>
+                    <p class="fade-in"><strong>If you're done pretending, this is where it starts.
+                    Not for a better life. A truer one.</strong></p>
+                </div>
+
+                <a href="https://www.amazon.com/s?k=The+Rebellion+of+Life+Burn+the+Lie+Ralph+Jabbour" target="_blank" rel="noopener" class="btn btn-primary fade-in">Get the Book on Amazon</a>
+            </div>
+        </div>
+    </div>
+</section>
+                    <!--
+                        ── SUBSTACK SUBSCRIBE ───────────────────────────────────────
+                        EDIT: Replace the href below with your Substack URL when live.
+                        Until then, this section is hidden (display:none).
+                        When ready, delete the style="display:none" attribute.
+                        ─────────────────────────────────────────────────────────────
+                    -->
+                    <div class="subscribe-block fade-in" style="display:none; margin-top:3rem;">
+                        <span class="subscribe-label">Letters from a Rebel</span>
+                        <h3>The essay goes deeper in the letter.</h3>
+                        <p>
+                            Every two weeks, what the idea is showing me right now,
+                            what I'm questioning, what happened this week that made the
+                            philosophy real in a way I didn't expect.
+                        </p>
+                        <!-- EDIT: Replace # with your Substack URL -->
+                        <a href="https://substack.com/@ralphja" target="_blank" rel="noopener" class="btn btn-ghost">Subscribe on Substack</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- ================================================================
+         FOOTER
+         EDIT: Copyright line, social links, and disclaimer
+         ================================================================ -->
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <!-- EDIT: Copyright -->
+                <p class="footer-copy">© 2025 Ralph Jabbour · The Rebellion Project</p>
+                <p class="footer-disclaimer">
+                    All services are philosophical, educational, and experiential in nature —
+                    not clinical, therapeutic, or medical. Ralph Jabbour is an author, educator,
+                    and facilitator, not a licensed medical or mental health professional.
+                </p>
+            </div>
+            <div class="footer-links">
+                <!-- EDIT: Social and platform links — update hrefs -->
+                <a href="https://www.instagram.com/iamralphja" target="_blank" rel="noopener">Instagram</a>
+                <!-- EDIT: Update with your exact LinkedIn URL -->
+                <a href="https://www.linkedin.com/in/ralph-jabbour" target="_blank" rel="noopener">LinkedIn</a>
+                <!-- EDIT: Replace # with Substack URL when live -->
+                <a href="#" target="_blank" rel="noopener" style="display:none;">Substack</a>
+                <!-- EDIT: Your contact email -->
+                <a href="mailto:ralph@ralphjabbour.com">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ================================================================
+         JAVASCRIPT — No editing needed below this line
+         Handles: nav transparency, scroll animations, burn-rule lighting
+         ================================================================ -->
+    <script>
+        // Nav — turns solid on scroll
+        const nav = document.getElementById('main-nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 40);
+        }, { passive: true });
+
+        // Scroll observer — fades in elements, lights the amber rule
+        const io = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                el.classList.add(el.classList.contains('burn-rule') ? 'lit' : 'visible');
+                io.unobserve(el);
+            });
+        }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+        document.querySelectorAll('.fade-in, .burn-rule').forEach(el => io.observe(el));
+    </script>
+
+</body>
 </html>
