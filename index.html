@@ -1152,31 +1152,35 @@
                     For coaching enquiries, speaking bookings, or corporate workshops — use the form below. Every message is read personally.
                 </p>
 
-                <div class="fade-in" style="display: flex; flex-direction: column; gap: 1rem;">
-                    <input type="text" id="contact-name" placeholder="Your name"
+                <form id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field"
+                    style="display: flex; flex-direction: column; gap: 1rem;" class="fade-in">
+                    <input type="hidden" name="form-name" value="contact">
+                    <input type="hidden" name="bot-field">
+
+                    <input type="text" name="name" placeholder="Your name" required
                         style="background: var(--surface); border: 1px solid var(--border); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; font-weight: 300; padding: 0.875rem 1.25rem; outline: none; width: 100%; transition: border-color 0.2s;"
                         onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
 
-                    <input type="email" id="contact-email" placeholder="Your email"
+                    <input type="email" name="email" placeholder="Your email" required
                         style="background: var(--surface); border: 1px solid var(--border); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; font-weight: 300; padding: 0.875rem 1.25rem; outline: none; width: 100%; transition: border-color 0.2s;"
                         onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
 
-                    <input type="tel" id="contact-phone" placeholder="Your phone number (optional)"
+                    <input type="tel" name="phone" placeholder="Your phone number (optional)"
                         style="background: var(--surface); border: 1px solid var(--border); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; font-weight: 300; padding: 0.875rem 1.25rem; outline: none; width: 100%; transition: border-color 0.2s;"
                         onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'">
 
-                    <textarea id="contact-message" placeholder="Your message" rows="5"
+                    <textarea name="message" placeholder="Your message" rows="5" required
                         style="background: var(--surface); border: 1px solid var(--border); color: var(--text-primary); font-family: var(--font-body); font-size: 0.9rem; font-weight: 300; padding: 0.875rem 1.25rem; outline: none; width: 100%; resize: vertical; transition: border-color 0.2s;"
                         onfocus="this.style.borderColor='var(--accent)'" onblur="this.style.borderColor='var(--border)'"></textarea>
 
-                    <button type="button" onclick="sendContactForm()" class="btn btn-primary" style="align-self: flex-start; border: none; cursor: pointer;">
+                    <button type="submit" class="btn btn-primary" style="align-self: flex-start; border: none; cursor: pointer;">
                         Send Message
                     </button>
 
                     <p id="contact-feedback" style="font-size: 0.8rem; color: var(--accent); display: none; font-family: var(--font-body); font-weight: 300;">
                         Message sent. Ralph will be in touch.
                     </p>
-                </div>
+                </form>
             </div>
         </div>
     </section>
@@ -1236,27 +1240,26 @@
     </script>
 
     <script>
-        function sendContactForm() {
-            const name    = document.getElementById('contact-name').value.trim();
-            const email   = document.getElementById('contact-email').value.trim();
-            const phone   = document.getElementById('contact-phone').value.trim();
-            const message = document.getElementById('contact-message').value.trim();
+        const contactForm = document.getElementById('contact-form');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const form = this;
+                const data = new FormData(form);
 
-            if (!name || !email || !message) {
-                alert('Please fill in your name, email, and message.');
-                return;
-            }
-
-            const subject = encodeURIComponent('Website Enquiry — ' + name);
-            const body    = encodeURIComponent(
-                'Name: ' + name + '\n' +
-                'Email: ' + email + '\n' +
-                (phone ? 'Phone: ' + phone + '\n' : '') +
-                '\nMessage:\n' + message
-            );
-
-            window.location.href = 'mailto:ralph@ralphjabbour.com?subject=' + subject + '&body=' + body;
-            document.getElementById('contact-feedback').style.display = 'block';
+                fetch('/', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: new URLSearchParams(data).toString()
+                })
+                .then(() => {
+                    form.reset();
+                    document.getElementById('contact-feedback').style.display = 'block';
+                })
+                .catch(() => {
+                    alert('Something went wrong. Please try again or email ralph@ralphjabbour.com directly.');
+                });
+            });
         }
     </script>
 
